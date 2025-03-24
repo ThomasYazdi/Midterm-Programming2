@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameManager myManager;
 
     public float speed = 5f;
     public float lookspeed = 75f;
@@ -15,11 +16,11 @@ public class PlayerMovement : MonoBehaviour
 
     public float camLock = 15f;
 
-    public int playerHealth = 3;
-
     // Start is called before the first frame update
     void Start()
     {
+        myManager = FindObjectOfType<GameManager>();
+
         RB = GetComponent<Rigidbody>();
         lookDirection = Vector3.zero;
     }
@@ -42,12 +43,6 @@ public class PlayerMovement : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0f, lookDirection.x, 0f);
         myCamera.transform.rotation = Quaternion.Euler(-lookDirection.y, lookDirection.x, 0f);
-
-        if (playerHealth <= 0)
-        {
-            Debug.Log("Player Dead");
-            //transition scene
-        }
     }
 
     void FixedUpdate()
@@ -79,12 +74,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            playerHealth--;
+            myManager.playerHealth--;
         }
 
-        if (collision.gameObject.tag == "Health" && playerHealth < 3)
+        if (collision.gameObject.tag == "Health" && myManager.playerHealth < 3)
         {
-            playerHealth++;
+            myManager.playerHealth++;
             Destroy(collision.gameObject);
         }
     }
