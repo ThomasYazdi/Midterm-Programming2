@@ -25,7 +25,6 @@ public class EndMenu : MonoBehaviour
             myManager.score = 0;
             myManager.playerHealth = 3;
             myManager.EnemyTimer = 0;
-            myManager.HealthTimer = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }

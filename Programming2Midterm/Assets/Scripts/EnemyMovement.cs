@@ -5,11 +5,11 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public GameObject targetPlayer;
-    public float speed = 3f;
+    public float speed = 50f;
     Rigidbody myRB;
 
     float proxAttack = 1f;
-    public float attackSpeed = 500f;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,6 @@ public class EnemyMovement : MonoBehaviour
             transform.LookAt(targetPlayer.transform);
         }
         
-
     }
 
     Vector3 VectorToPlayer()

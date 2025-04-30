@@ -12,18 +12,17 @@ public class GameManager : MonoBehaviour
     public PlayerMovement myPlayer;
     public TextMeshProUGUI myHealth;
     public TextMeshProUGUI myScore;
+    public TextMeshProUGUI myMoney;
 
     public float EnemyTimer;
     public float EnemyInterval = 5f;
     public GameObject myEnemy;
 
-    public float HealthTimer;
-    public float HealthInterval = 15f;
-    public GameObject myHealthObject;
-
     public float score = 0f;
+    public int money = 0;
 
     public int playerHealth = 3;
+    //public GameObject mySword;
 
     void Awake()
     {
@@ -43,8 +42,7 @@ public class GameManager : MonoBehaviour
     {
         myPlayer = FindObjectOfType<PlayerMovement>();
 
-        //myHealth = GameObject.Find("PlayerHealth").GetComponent<TextMeshProUGUI>();
-        //myScore = GameObject.Find("PlayerScore").GetComponent<TextMeshProUGUI>();
+
     }
 
     // Update is called once per frame
@@ -61,24 +59,33 @@ public class GameManager : MonoBehaviour
                 EnemyTimer = 0f;
                 Instantiate(myEnemy, EnemyTargetPos, Quaternion.identity);
             }
-
-            HealthTimer += Time.deltaTime;
-            Vector3 HealthTargetPos = new Vector3
-            (Random.Range(-24, 24), 1, Random.Range(-24, 24));
-
-            if (HealthTimer > HealthInterval)
+            if (score < 10)
             {
-                HealthTimer = 0f;
-                Instantiate(myHealthObject, HealthTargetPos, Quaternion.identity);
+                EnemyInterval = 5f;
+            }
+            if (score >= 10 && score < 20)
+            {
+                EnemyInterval = 3f;
             }
 
+            if (score >= 20)
+            {
+                EnemyInterval = 1f;
+            }
             if (playerHealth <= 0)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
 
-            myHealth.text = "Health: " + playerHealth;
+            /*if (Input.GetKey(KeyCode.F) && money >= 50)
+            {
+                money = money - 50;
+                gameObject.transform.scale.y + 1;
+            }*/
+
+            myHealth.text = "Health: " + playerHealth + "/3";
             myScore.text = "Score: " + score;
+            myMoney.text = "Money: " + money;
         }
     }
 }

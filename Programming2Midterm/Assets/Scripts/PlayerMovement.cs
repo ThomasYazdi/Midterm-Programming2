@@ -43,6 +43,12 @@ public class PlayerMovement : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0f, lookDirection.x, 0f);
         myCamera.transform.rotation = Quaternion.Euler(-lookDirection.y, lookDirection.x, 0f);
+
+        if (Input.GetKey(KeyCode.R) && myManager.money >= 20 && myManager.playerHealth < 3)
+        {
+            myManager.money = myManager.money - 20;
+            myManager.playerHealth = myManager.playerHealth + 1;
+        }
     }
 
     void FixedUpdate()

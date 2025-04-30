@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+     
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -25,6 +25,8 @@ public class PlayerAttack : MonoBehaviour
         {
             Destroy(collision.gameObject);
             myManager.score++;
+            myManager.money = myManager.money + 5;
+
         }
     }
 }
