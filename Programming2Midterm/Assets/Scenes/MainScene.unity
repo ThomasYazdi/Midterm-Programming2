@@ -372,6 +372,7 @@ MonoBehaviour:
   score: 0
   money: 0
   playerHealth: 3
+  mySword: {fileID: 0}
 --- !u!4 &376397875
 Transform:
   m_ObjectHideFlags: 0
@@ -519,6 +520,8 @@ MonoBehaviour:
   lookspeed: 75
   myCamera: {fileID: 963194225}
   camLock: 20
+  sword: {fileID: 803559201}
+  scaleSword: 1
 --- !u!136 &801538783
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -600,7 +603,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801538781}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2815609, y: 0.98, z: 0.2}
+  m_LocalPosition: {x: -2.7, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -664,14 +667,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803559200}
-  m_LocalRotation: {x: 0.6358743, y: -0, z: -0, w: 0.77179265}
-  m_LocalPosition: {x: 0.66, y: 0.33000004, z: 0.78000003}
-  m_LocalScale: {x: 0.25, y: 1, z: 0.25}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.67900014, y: 0.31999993, z: 0.424}
+  m_LocalScale: {x: 0.25000003, y: 1, z: 0.25000012}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 801538786}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 78.97, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &803559202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1244,7 +1247,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9619d142d6342b94d9ba2b2ecd6743b5, type: 2}
+  - {fileID: 2100000, guid: 44c0fd0d99204294f9caf1a9b549f4ad, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

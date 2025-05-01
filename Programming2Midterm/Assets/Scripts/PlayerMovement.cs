@@ -16,6 +16,14 @@ public class PlayerMovement : MonoBehaviour
 
     public float camLock = 15f;
 
+    public Transform sword;
+    public float scaleSword = 1f;
+
+    bool isVertical = true;
+
+    private Vector3 swordOriginalPosition;
+    private Vector3 lastHorizontalPosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
         RB = GetComponent<Rigidbody>();
         lookDirection = Vector3.zero;
+
+        swordOriginalPosition = sword.localPosition;
+        lastHorizontalPosition = swordOriginalPosition;
     }
 
     // Update is called once per frame
@@ -46,8 +57,42 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.R) && myManager.money >= 20 && myManager.playerHealth < 3)
         {
-            myManager.money = myManager.money - 20;
-            myManager.playerHealth = myManager.playerHealth + 1;
+            myManager.money -= 20;
+            myManager.playerHealth += 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.F) && myManager.money >= 50)
+        {
+            myManager.money -= 50;
+            Vector3 newScale = sword.localScale;
+            newScale.y += scaleSword;
+            sword.localScale = newScale;
+
+            Vector3 newPosition = sword.localPosition;
+            newPosition.z += scaleSword * 0.5f;
+            sword.localPosition = newPosition;
+
+            if (!isVertical)
+            {
+                lastHorizontalPosition = sword.localPosition;
+            }
+
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (isVertical == true)
+            {
+                sword.localRotation = Quaternion.Euler(0, 90, 90);
+                sword.localPosition = lastHorizontalPosition;
+                isVertical = false;
+            }
+            else
+            {
+                sword.localRotation = Quaternion.Euler(0, 0, 0);
+                sword.localPosition = swordOriginalPosition;
+                isVertical = true;
+            }
         }
     }
 

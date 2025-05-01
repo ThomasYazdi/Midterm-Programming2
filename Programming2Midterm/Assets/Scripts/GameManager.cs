@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public int money = 0;
 
     public int playerHealth = 3;
-    //public GameObject mySword;
+    public GameObject mySword;
 
     void Awake()
     {
@@ -77,11 +77,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
 
-            /*if (Input.GetKey(KeyCode.F) && money >= 50)
-            {
-                money = money - 50;
-                gameObject.transform.scale.y + 1;
-            }*/
+            
 
             myHealth.text = "Health: " + playerHealth + "/3";
             myScore.text = "Score: " + score;
