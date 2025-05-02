@@ -19,10 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform sword;
     public float scaleSword = 1f;
 
-    bool isVertical = true;
+    public bool isVertical = true;
 
     public float staminaTimer;
-    public float staminaInterval = 5f;
+    //public float staminaInterval = 5f;
 
     private Vector3 swordOriginalPosition;
     private Vector3 lastHorizontalPosition;
@@ -58,15 +58,15 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, lookDirection.x, 0f);
         myCamera.transform.rotation = Quaternion.Euler(-lookDirection.y, lookDirection.x, 0f);
 
-        if (Input.GetKey(KeyCode.R) && myManager.money >= 20 && myManager.playerHealth < 3)
+        if (Input.GetKeyDown(KeyCode.R) && myManager.money >= 5 && myManager.playerHealth < 3)
         {
-            myManager.money -= 20;
+            myManager.money -= 5;
             myManager.playerHealth += 1;
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && myManager.money >= 50)
+        if (Input.GetKeyDown(KeyCode.F) && myManager.money >= 10)
         {
-            myManager.money -= 50;
+            myManager.money -= 10;
             Vector3 newScale = sword.localScale;
             newScale.y += scaleSword;
             sword.localScale = newScale;
@@ -95,21 +95,26 @@ public class PlayerMovement : MonoBehaviour
                 sword.localRotation = Quaternion.Euler(0, 0, 0);
                 sword.localPosition = swordOriginalPosition;
                 isVertical = true;
-                staminaTimer = 0;
+                //staminaTimer = 0;
             }
         }
 
-        if (isVertical == false)
+        if (isVertical == false && staminaTimer >= 0)
+        {
+            staminaTimer -= Time.deltaTime;
+        }
+
+        if (isVertical == true && staminaTimer <= 5)
         {
             staminaTimer += Time.deltaTime;
         }
 
-        if (staminaTimer > staminaInterval)
+        if (staminaTimer <= 0)
         {
             sword.localRotation = Quaternion.Euler(0, 0, 0);
             sword.localPosition = swordOriginalPosition;
             isVertical = true;
-            staminaTimer = 0;
+            //staminaTimer = 0;
         }
     }
 

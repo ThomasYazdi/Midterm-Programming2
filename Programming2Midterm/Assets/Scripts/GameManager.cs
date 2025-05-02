@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
 
     public PlayerMovement myPlayer;
     public TextMeshProUGUI myHealth;
-    public TextMeshProUGUI myScore;
     public TextMeshProUGUI myMoney;
     public TextMeshProUGUI myStamina;
 
@@ -79,13 +78,31 @@ public class GameManager : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
-
-            
-
+                        
             myHealth.text = "Health: " + playerHealth + "/3";
-            myScore.text = "Score: " + score;
-            myMoney.text = "Money: " + money;
+            myMoney.text = "Score: " + money;
             myStamina.text = "Stamina: " + Mathf.Round(myPlayer.staminaTimer) + "/5";
+        }
+    }
+    
+    private void OnEnabled()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisabled()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Scene Loaded: " + scene.name);
+        if (scene.name == "MainScene")
+        {
+            myHealth = GameObject.Find("PlayerHealth").GetComponent<TextMeshProUGUI>();
+            myMoney = GameObject.Find("PlayerMoney").GetComponent<TextMeshProUGUI>();
+            myStamina = GameObject.Find("PlayerStam").GetComponent<TextMeshProUGUI>();
         }
     }
 }

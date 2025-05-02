@@ -18,7 +18,7 @@ public class EndMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerScore.text = "You Scored " + myManager.score + " Points!";
+        playerScore.text = "You Scored a Total of " + myManager.score + " Points!";
 
         if (Input.GetKey(KeyCode.R))
         {
