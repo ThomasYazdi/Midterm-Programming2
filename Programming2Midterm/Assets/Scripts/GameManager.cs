@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI myHealth;
     public TextMeshProUGUI myScore;
     public TextMeshProUGUI myMoney;
+    public TextMeshProUGUI myStamina;
 
     public float EnemyTimer;
     public float EnemyInterval = 5f;
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     public int playerHealth = 3;
     public GameObject mySword;
+
+    
 
     void Awake()
     {
@@ -82,6 +85,7 @@ public class GameManager : MonoBehaviour
             myHealth.text = "Health: " + playerHealth + "/3";
             myScore.text = "Score: " + score;
             myMoney.text = "Money: " + money;
+            myStamina.text = "Stamina: " + Mathf.Round(myPlayer.staminaTimer) + "/5";
         }
     }
 }

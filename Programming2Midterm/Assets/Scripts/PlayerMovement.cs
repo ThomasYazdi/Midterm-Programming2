@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
 
     bool isVertical = true;
 
+    public float staminaTimer;
+    public float staminaInterval = 5f;
+
     private Vector3 swordOriginalPosition;
     private Vector3 lastHorizontalPosition;
 
@@ -92,7 +95,21 @@ public class PlayerMovement : MonoBehaviour
                 sword.localRotation = Quaternion.Euler(0, 0, 0);
                 sword.localPosition = swordOriginalPosition;
                 isVertical = true;
+                staminaTimer = 0;
             }
+        }
+
+        if (isVertical == false)
+        {
+            staminaTimer += Time.deltaTime;
+        }
+
+        if (staminaTimer > staminaInterval)
+        {
+            sword.localRotation = Quaternion.Euler(0, 0, 0);
+            sword.localPosition = swordOriginalPosition;
+            isVertical = true;
+            staminaTimer = 0;
         }
     }
 
